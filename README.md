@@ -7,3 +7,14 @@ The core is available at https://github.com/vaisala-oss/sofp-core
 An example backend is available at https://github.com/vaisala-oss/sofp-example-backend
 
 © 2018 Vaisala Corporation
+
+## To release
+
+To release a new version, do the following:
+
+1. Bump the version appropriately in package.json
+2. Commit and push all changes
+3. rm -r dist/
+4. npm run build
+5. npm publish
+
