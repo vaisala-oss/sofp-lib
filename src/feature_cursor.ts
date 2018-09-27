@@ -1,4 +1,4 @@
-import {Feature, Filter} from 'lib/';
+import {Feature, Filter} from './';
 
 export interface FeatureCursor {
     hasNext() : boolean;

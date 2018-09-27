@@ -1,4 +1,4 @@
-import {Feature} from 'lib/';
+import {Feature} from './';
 
 export interface Filter {
     filterClass : string;

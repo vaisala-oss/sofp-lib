@@ -4,7 +4,8 @@
   "description": "Simple Observation Features Pilot server library",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "typedoc": "typedoc --out typedoc/ --mode file --exclude **/*.test.*"
   },
   "engines": {
     "node": "^8.11.4"
@@ -25,11 +26,11 @@
       "email": "sampo.savolainen@spatineo.com"
     }
   ],
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "typescript": "~2.9.2",
     "@types/node": "~10.9.3",
-    "ts-node": "~7.0.1"
+    "ts-node": "~7.0.1",
+    "typedoc": "~0.12.0"
   }
 }

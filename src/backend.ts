@@ -1,4 +1,4 @@
-import {Collection, Link} from 'lib/';
+import {Collection, Link} from './';
 
 export class Backend {
     name : string;

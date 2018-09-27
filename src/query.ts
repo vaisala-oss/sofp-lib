@@ -1,4 +1,4 @@
-import {Filter} from 'lib/';
+import {Filter} from './';
 
 export interface Query {
     featureName : string;

@@ -1,4 +1,4 @@
-import {FeatureCursor, Link, Query} from 'lib/';
+import {FeatureCursor, Link, Query} from './';
 
 /**
  * Interface for objects representing WFS 3.0 collections
