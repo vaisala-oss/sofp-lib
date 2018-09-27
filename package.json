@@ -1,10 +1,11 @@
 {
   "name": "sofp-lib",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple Observation Features Pilot server library",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
+    "test": "jest dist/**.test.js",
     "typedoc": "typedoc --out typedoc/ --mode file --exclude **/*.test.*"
   },
   "engines": {
@@ -29,8 +30,11 @@
   "dependencies": {},
   "devDependencies": {
     "typescript": "~2.9.2",
+    "jest": "~23.6.0",
     "@types/node": "~10.9.3",
     "ts-node": "~7.0.1",
-    "typedoc": "~0.12.0"
+    "typedoc": "~0.12.0",
+    "@types/jest": "~23.3.1",
+    "ts-jest": "~23.1.4"
   }
 }

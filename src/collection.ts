@@ -1,4 +1,4 @@
-import {FeatureCursor, Link, Query} from './';
+import {FeatureStream, Link, Query} from './';
 
 /**
  * Interface for objects representing WFS 3.0 collections
@@ -18,5 +18,5 @@ export interface Collection {
     extent? : string;
     crs? : string;
 
-    executeQuery(query : Query) : FeatureCursor;
+    executeQuery(query : Query) : FeatureStream;
 };
