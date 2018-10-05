@@ -1,6 +1,7 @@
 import {Filter} from './';
 
 export interface Query {
-    featureName : string;
+    limit : Number;
+    skip : Number;
     filters : Filter[];
 };
