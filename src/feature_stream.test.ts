@@ -70,6 +70,8 @@ test('Test stream with 2 objects in, 1 out (1 filtered), then end-of-stream', do
 
     fs.remainingFilter.push({
         filterClass: 'mockFilter',
+        asQuery: '',
+        parameters: {},
         accept: (feature) => { return feature.properties['acceptMe']; }
     });
 
