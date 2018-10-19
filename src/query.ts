@@ -2,6 +2,6 @@ import {Filter} from './';
 
 export interface Query {
     limit : Number;
-    skip : Number;
+    nextToken : String;
     filters : Filter[];
 };

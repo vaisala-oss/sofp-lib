@@ -1,16 +1,17 @@
+import {Feature} from './feature';
 import {FeatureStream} from './feature_stream';
 
 
 test('Test stream with 1 object, then end-of-stream', done => {
     var fs = new FeatureStream();
 
-    var mockObject = { data: 'yes' };
+    var mockFeature : Feature = { properties: { data: 'yes' }, geometry: null };
 
     var dataCall = 0;
     fs.on('data', function(obj) {
         dataCall++;
         expect(dataCall).toBe(1);
-        expect(obj).toBe(mockObject);
+        expect(obj.feature).toBe(mockFeature);
     });
 
     fs.on('end', function() {
@@ -18,7 +19,7 @@ test('Test stream with 1 object, then end-of-stream', done => {
         done();
     });
 
-    expect(fs.push(mockObject)).toBe(true);
+    expect(fs.push({ feature: mockFeature, nextToken: null })).toBe(true);
     expect(fs.push(null)).toBe(false);
 });
 
@@ -39,17 +40,17 @@ test('Test stream with 0 objects, just end-of-stream', done => {
 test('Test stream with 2 objects in, 2 out, then end-of-stream', done => {
     var fs = new FeatureStream();
 
-    var mockObject1 = { properties: { foo: false } };
-    var mockObject2 = { properties: { foo: true } };
+    var mockFeature1 : Feature = { properties: { foo: false }, geometry: null };
+    var mockFeature2 : Feature = { properties: { foo: true }, geometry: null };
 
     var dataCall = 0;
     fs.on('data', function(obj) {
         dataCall++;
         expect(dataCall < 3).toBe(true);
         if (dataCall == 1) {
-            expect(obj).toBe(mockObject1);
+            expect(obj.feature).toBe(mockFeature1);
         } else {
-            expect(obj).toBe(mockObject2);
+            expect(obj.feature).toBe(mockFeature2);
         }
     });
 
@@ -58,8 +59,8 @@ test('Test stream with 2 objects in, 2 out, then end-of-stream', done => {
         done();
     });
 
-    expect(fs.push(mockObject1)).toBe(true);
-    expect(fs.push(mockObject2)).toBe(true);
+    expect(fs.push({ feature: mockFeature1, nextToken: 'a' })).toBe(true);
+    expect(fs.push({ feature: mockFeature2, nextToken: null })).toBe(true);
     expect(fs.push(null)).toBe(false);
 });
 
@@ -75,14 +76,14 @@ test('Test stream with 2 objects in, 1 out (1 filtered), then end-of-stream', do
         accept: (feature) => { return feature.properties['acceptMe']; }
     });
 
-    var mockObject1 = { properties: { acceptMe: false } };
-    var mockObject2 = { properties: { acceptMe: true } };
+    var mockFeature1 : Feature = { properties: { acceptMe: false }, geometry: null };
+    var mockFeature2 : Feature = { properties: { acceptMe: true }, geometry: null };
 
     var dataCall = 0;
     fs.on('data', function(obj) {
         dataCall++;
         expect(dataCall).toBe(1);
-        expect(obj).toBe(mockObject2);
+        expect(obj.feature).toBe(mockFeature2);
     });
 
     fs.on('end', function() {
@@ -90,8 +91,8 @@ test('Test stream with 2 objects in, 1 out (1 filtered), then end-of-stream', do
         done();
     });
 
-    expect(fs.push(mockObject1)).toBe(false);
-    expect(fs.push(mockObject2)).toBe(true);
+    expect(fs.push({ feature: mockFeature1, nextToken: 'a' })).toBe(false);
+    expect(fs.push({ feature: mockFeature2, nextToken: 'b' })).toBe(true);
     expect(fs.push(null)).toBe(false);
 });
 

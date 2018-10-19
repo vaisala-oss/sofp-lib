@@ -1,5 +1,5 @@
 
 export class Feature {
-    properties : Map<string, object>;
+    properties : object;
     geometry : object;
 };

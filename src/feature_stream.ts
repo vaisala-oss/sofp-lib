@@ -1,4 +1,4 @@
-import {Feature, Filter} from './';
+import {Filter, Item} from './';
 import {Readable} from 'stream';
 
 export class FeatureStream extends Readable {
@@ -7,19 +7,19 @@ export class FeatureStream extends Readable {
     }
 
     /**
-     * Add feature to stream.
+     * Add feature item to stream.
      *
-     * @returns false if the filter does not accept the feature
+     * @returns false if the filter does not accept this feature
      **/
-    push(feature : any) : boolean {
-        if (feature !== null && feature !== undefined) {
+    push(item : Item) : boolean {
+        if (item !== null && item !== undefined) {
             for (var i = 0; i < this.remainingFilter.length; i++) {
-                if (!this.remainingFilter[i].accept(feature)) {
+                if (!this.remainingFilter[i].accept(item.feature)) {
                     return false;
                 }
             }
         }
-        return super.push(feature);
+        return super.push(item);
     }
 
     /**
