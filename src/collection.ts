@@ -1,4 +1,4 @@
-import {FeatureStream, Link, Query} from './';
+import {Feature, FeatureStream, Link, Query} from './';
 
 /**
  * Interface for objects representing WFS 3.0 collections
@@ -37,4 +37,6 @@ export interface Collection {
      *
      **/
     executeQuery(query : Query) : FeatureStream;
+
+    getFeatureById(id : string) : Promise<Feature>;
 };
