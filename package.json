@@ -15,7 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/vaisala-oss/sofp-lib.git"
   },
-  "author": "Vaisala Oyj",
+  "author": "Vaisala Corporation",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/vaisala-oss/sofp-lib/issues"
