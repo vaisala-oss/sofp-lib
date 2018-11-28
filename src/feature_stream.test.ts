@@ -96,3 +96,32 @@ test('Test stream with 2 objects in, 1 out (1 filtered), then end-of-stream', do
     expect(fs.push(null)).toBe(false);
 });
 
+test('Test stream error handling', done => {
+    var fs = new FeatureStream();
+
+    var mockFeature1 : Feature = { properties: { acceptMe: false }, geometry: null };
+    var error;
+    var featuresReceived = 0;
+
+    fs.on('data', function(obj) {
+        featuresReceived++;
+    });
+
+    fs.on('error', function(err) {
+        error = err;
+    });
+
+
+    fs.on('end', function() {
+        expect(featuresReceived).toBe(1);
+        expect(error).toBeDefined();
+        done();
+    });
+
+    // Item containing a mock feature should be accepted
+    expect(fs.push({ feature: mockFeature1, nextToken: 'a' })).toBe(true);
+    // The error is "accepted"
+    expect(fs.push(new Error('Something bad happened'))).toBe(true);
+    // Pushing more features is expected to fail
+    expect(fs.push({ feature: mockFeature1, nextToken: 'a' })).toBe(false);
+});

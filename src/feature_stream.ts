@@ -7,12 +7,18 @@ export class FeatureStream extends Readable {
     }
 
     /**
-     * Add feature item to stream.
+     * Add feature item to stream. If an error occurs, an instance of Error
+     * may be pushed to the stream. An alternative way to pass an Error and
+     * close the stream is by calling destroy() with the Error parameter.
      *
      * @returns false if the filter does not accept this feature
      **/
-    push(item : Item) : boolean {
+    push(item : Item | Error) : boolean {
         if (item !== null && item !== undefined) {
+            if (item instanceof Error) {
+                this.destroy(item);
+                return true;
+            }
             for (var i = 0; i < this.remainingFilter.length; i++) {
                 if (!this.remainingFilter[i].accept(item.feature)) {
                     return false;
