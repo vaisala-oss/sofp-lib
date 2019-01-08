@@ -1,4 +1,4 @@
-import {Feature, FeatureStream, Link, Query} from './';
+import {Feature, FeatureStream, Link, Property, Query} from './';
 
 /**
  * Interface for objects representing WFS 3.0 collections
@@ -17,6 +17,8 @@ export interface Collection {
 
     extent? : string;
     crs? : string;
+
+    properties : Property[];
 
     /**
      * This function performs the query at the data store that contains the data for this collection.

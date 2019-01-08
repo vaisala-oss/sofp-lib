@@ -5,4 +5,5 @@ export * from './feature_stream';
 export * from './filter';
 export * from './item';
 export * from './link';
+export * from './property';
 export * from './query';
