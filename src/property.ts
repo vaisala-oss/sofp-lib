@@ -9,7 +9,7 @@ export enum PropertyType {
 };
 
 export class Property {
-    name : String;
+    name : string;
     type : PropertyType;
     description? : string;
 };

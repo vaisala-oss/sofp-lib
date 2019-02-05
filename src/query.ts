@@ -1,8 +1,8 @@
 import {Filter} from './';
 
 export interface Query {
-    limit : Number;
-    nextToken : String;
+    limit : number;
+    nextToken : string;
     
     /**
      * Filter as parsed from the query. Backends should never modify the filter array or the contents.
