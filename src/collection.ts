@@ -20,6 +20,13 @@ export interface Collection {
 
     properties : Property[];
 
+    /** 
+     * Name of the time properties that are used in the SOFP core time filter. If this value is set, 
+     * only the properties named in this array are used to determine whether the feature is accepted
+     * or rejected by the time filter.
+     **/
+    timePropertyNames? : string[];
+
     /**
      * This function performs the query at the data store that contains the data for this collection.
      * The implementation is responsible for the following:
