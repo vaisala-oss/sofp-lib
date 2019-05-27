@@ -1,4 +1,4 @@
-import {Feature, FeatureStream, Link, Property, Query} from './';
+import {Feature, FeatureStream, Link, Property, Query, QueryParameter} from './';
 
 /**
  * Interface for objects representing WFS 3.0 collections
@@ -26,6 +26,12 @@ export interface Collection {
      * or rejected by the time filter.
      **/
     timePropertyNames? : string[];
+
+    /**
+     * Additional parameters that the collection implementation will use when executing the query.
+     * The core will parse them and pass them as filters to the collection implementation.
+     **/
+    additionalQueryParameters? : QueryParameter[];
 
     /**
      * This function performs the query at the data store that contains the data for this collection.

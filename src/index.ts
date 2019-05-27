@@ -7,3 +7,4 @@ export * from './item';
 export * from './link';
 export * from './property';
 export * from './query';
+export * from './query_parameter';
