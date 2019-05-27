@@ -12,4 +12,5 @@ export class Property {
     name : string;
     type : PropertyType;
     description? : string;
+    exampleValues? : string[];
 };
