@@ -5,7 +5,7 @@ import {Feature, FeatureStream, Link, Property, Query, QueryParameter} from './'
  * @link https://raw.githubusercontent.com/opengeospatial/WFS_FES/master/core/openapi/schemas/collectionInfo.yaml
  **/
 export interface Collection {
-    name : string;
+    id : string;
     title? : string;
     description? : string;
 
