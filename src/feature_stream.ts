@@ -35,4 +35,9 @@ export class FeatureStream extends Readable {
      * @see push
      **/
     remainingFilter : Filter[] = [];
+
+    /**
+     * CRS of the features in the stream in URL format. For example 'http://www.opengis.net/def/crs/EPSG/0/3067'
+     **/
+    crs : String = null;
 }
