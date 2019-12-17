@@ -18,6 +18,13 @@ export interface Collection {
     extent? : string;
     crs? : string;
 
+    /**
+     * Optionally specified name for collection feature schema. This allows sharing a schema definition
+     * for multiple collections. The responsibility for unique schemas is with the administrator
+     * bundling sofp with backends.
+     */
+    schemaName? : string;
+
     properties : Property[];
 
     /** 
