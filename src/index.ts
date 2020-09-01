@@ -1,3 +1,4 @@
+export * from './authorizer';
 export * from './backend';
 export * from './collection';
 export * from './feature';

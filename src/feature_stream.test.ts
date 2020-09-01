@@ -1,6 +1,4 @@
-import {Feature} from './feature';
-import {FeatureStream} from './feature_stream';
-
+import {Feature, FeatureStream, Item} from './';
 
 test('Test stream with 1 object, then end-of-stream', done => {
     var fs = new FeatureStream();
@@ -8,7 +6,7 @@ test('Test stream with 1 object, then end-of-stream', done => {
     var mockFeature : Feature = { properties: { data: 'yes' }, geometry: null };
 
     var dataCall = 0;
-    fs.on('data', function(obj) {
+    fs.on('data', function(obj : Item) {
         dataCall++;
         expect(dataCall).toBe(1);
         expect(obj.feature).toBe(mockFeature);
@@ -44,7 +42,7 @@ test('Test stream with 2 objects in, 2 out, then end-of-stream', done => {
     var mockFeature2 : Feature = { properties: { foo: true }, geometry: null };
 
     var dataCall = 0;
-    fs.on('data', function(obj) {
+    fs.on('data', function(obj : Item) {
         dataCall++;
         expect(dataCall < 3).toBe(true);
         if (dataCall == 1) {
@@ -71,16 +69,16 @@ test('Test stream with 2 objects in, 1 out (1 filtered), then end-of-stream', do
 
     fs.remainingFilter.push({
         filterClass: 'mockFilter',
-        asQuery: '',
+        query: {},
         parameters: {},
-        accept: (feature) => { return feature.properties['acceptMe']; }
+        accept: (feature : Feature) => { return feature.properties['acceptMe']; }
     });
 
     var mockFeature1 : Feature = { properties: { acceptMe: false }, geometry: null };
     var mockFeature2 : Feature = { properties: { acceptMe: true }, geometry: null };
 
     var dataCall = 0;
-    fs.on('data', function(obj) {
+    fs.on('data', function(obj : Item) {
         dataCall++;
         expect(dataCall).toBe(1);
         expect(obj.feature).toBe(mockFeature2);
@@ -100,10 +98,11 @@ test('Test stream error handling', done => {
     var fs = new FeatureStream();
 
     var mockFeature1 : Feature = { properties: { acceptMe: false }, geometry: null };
-    var error;
+    var error : any;
     var featuresReceived = 0;
 
     fs.on('data', function(obj) {
+
         featuresReceived++;
     });
 

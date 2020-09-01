@@ -13,12 +13,13 @@ export class FeatureStream extends Readable {
      *
      * @returns false if the filter does not accept this feature
      **/
-    push(item : Item | Error) : boolean {
+    push(item : Item | Error | null) : boolean {
         if (item !== null && item !== undefined) {
             if (item instanceof Error) {
                 this.destroy(item);
                 return true;
             }
+            this.lastPushedItem = item;
             for (var i = 0; i < this.remainingFilter.length; i++) {
                 if (!this.remainingFilter[i].accept(item.feature)) {
                     return false;
@@ -39,5 +40,12 @@ export class FeatureStream extends Readable {
     /**
      * CRS of the features in the stream in URL format. For example 'http://www.opengis.net/def/crs/EPSG/0/3067'
      **/
-    crs : String = null;
+    crs : String | null = null;
+
+    /**
+     * The last item that the backend pushed to the stream. Note that this item might or might
+     * not be accepted by the remainingFilter. This is used to determine the nextToken for
+     * the next page of results.
+     **/
+    lastPushedItem : Item | null = null;
 }

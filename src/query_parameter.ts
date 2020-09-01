@@ -1,6 +1,6 @@
 import {PropertyType} from './';
 
-export class QueryParameter {
+export interface QueryParameter {
     name : string;
     type : PropertyType;
     description? : string;

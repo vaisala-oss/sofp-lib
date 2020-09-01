@@ -1,6 +1,6 @@
 import {Feature} from './';
 
-export class Item {
+export interface Item {
     feature : Feature;
-    nextToken : string;
+    nextToken : string | null;
 };

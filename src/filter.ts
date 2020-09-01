@@ -7,15 +7,15 @@ export interface Filter {
     filterClass : string;
 
     /**
-     * This filter as a query string ('foo=bar')
+     * This filter as a query string parameters ({ 'param1': 'value1'})
      **/
-    asQuery : string;
+    query : any;
     
     /**
      * Parameters for the filter, these can be used in backends when filters are used in the backend to
      * for example produce SQL where parameters.
      **/
-    parameters : object;
+    parameters : any;
 
     /**
      * Synchronous function to determine whether a feature is accepted by the filter

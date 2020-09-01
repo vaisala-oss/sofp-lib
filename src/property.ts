@@ -8,7 +8,7 @@ export enum PropertyType {
     object = 'object'
 };
 
-export class Property {
+export interface Property {
     name : string;
     type : PropertyType;
     description? : string;

@@ -1,5 +1,5 @@
 
-export class Feature {
-    properties : object;
-    geometry : object;
+export interface Feature {
+    properties : any;
+    geometry : any;
 };
