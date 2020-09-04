@@ -10,23 +10,41 @@ export class FeatureStream extends Readable {
      * Add feature item to stream. If an error occurs, an instance of Error
      * may be pushed to the stream. An alternative way to pass an Error and
      * close the stream is by calling destroy() with the Error parameter.
+     * End of items can be signaled by pushing null or an Item with a null
+     * feature. The latter is recommended. It allows the backend to 
+     * set the nextToken in cases where the backend does not find any
+     * features within the current page of its internal paging.
      *
      * @returns false if the filter does not accept this feature
      **/
     push(item : Item | Error | null) : boolean {
+        let previousLastPushedItem = this.lastPushedItem;
+        let forceStoringLastItem = false;
         if (item !== null && item !== undefined) {
             if (item instanceof Error) {
                 this.destroy(item);
                 return true;
             }
+            
             this.lastPushedItem = item;
-            for (var i = 0; i < this.remainingFilter.length; i++) {
-                if (!this.remainingFilter[i].accept(item.feature)) {
-                    return false;
+            if (item.feature === null) {
+                // Overwrite item to be pushed as null => will close stream
+                item = null;
+                forceStoringLastItem = true;
+            } else {
+                for (var i = 0; i < this.remainingFilter.length; i++) {
+                    if (!this.remainingFilter[i].accept(item.feature)) {
+                        return false;
+                    }
                 }
             }
         }
-        return super.push(item);
+        let ret = super.push(item);
+        // If super does not accept the item => stream is closed, reset last pushed item
+        if (!ret && !forceStoringLastItem) {
+            this.lastPushedItem = previousLastPushedItem;
+        }
+        return ret;
     }
 
     /**

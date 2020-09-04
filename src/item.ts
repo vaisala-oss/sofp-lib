@@ -1,6 +1,6 @@
 import {Feature} from './';
 
 export interface Item {
-    feature : Feature;
+    feature : Feature | null;
     nextToken : string | null;
 };
