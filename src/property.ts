@@ -5,8 +5,7 @@ export enum PropertyType {
     integer = 'integer',
     boolean = 'boolean',
     array = 'array',
-    object = 'object',
-    reference = 'reference'
+    object = 'object'
 };
 
 export interface Property {
