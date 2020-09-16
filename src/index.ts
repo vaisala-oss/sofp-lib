@@ -7,5 +7,6 @@ export * from './filter';
 export * from './item';
 export * from './link';
 export * from './property';
+export * from './property_reference';
 export * from './query';
 export * from './query_parameter';
