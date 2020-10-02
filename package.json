@@ -3,6 +3,7 @@
   "version": "0.5.1",
   "description": "Simple Observation Features Pilot server library",
   "main": "dist/index.js",
+  "types": "src/index.ts",
   "scripts": {
     "build": "tsc",
     "test": "jest dist/**.test.js",
