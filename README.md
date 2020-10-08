@@ -14,7 +14,8 @@ To release a new version, do the following:
 
 1. Bump the version appropriately in package.json
 2. Commit and push all changes
-3. rm -r dist/
+3. rm -r dist/ typedoc/
 4. npm run build
-5. npm publish
+5. npm run typedoc
+6. npm publish
 
