@@ -8,6 +8,7 @@ export interface Collection {
     id : string;
     title? : string;
     description? : string;
+    exampleFeature? : Feature;
 
     /**
      * Any non-protocol links for the collection. For example links to additional information etc. The
