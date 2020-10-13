@@ -12,5 +12,5 @@ export interface Property {
     name : string;
     type : PropertyType;
     description? : string;
-    exampleValues? : string[];
+    exampleValues? : any[];
 };
