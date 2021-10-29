@@ -5,8 +5,13 @@ export class Backend {
 
     constructor(name : string) {
         this.name = name;
+        this.links = {
+            collections: []
+        };
     }
 
     collections : Collection[] = [];
-    links : Link[] = [];
+    links: {
+        collections: Link[]
+    }
 };
